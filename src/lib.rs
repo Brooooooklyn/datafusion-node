@@ -1,8 +1,13 @@
 #![deny(clippy::all)]
+#![allow(clippy::new_without_default)]
 
-use napi_derive::napi;
+#[cfg(all(
+  not(all(target_os = "linux", target_env = "musl", target_arch = "aarch64")),
+  not(debug_assertions)
+))]
+#[global_allocator]
+static ALLOC: mimalloc_rust::GlobalMiMalloc = mimalloc_rust::GlobalMiMalloc;
 
-#[napi]
-pub fn plus_100(input: u32) -> u32 {
-  input + 100
-}
+pub mod data_frame;
+pub mod expr;
+pub mod session_context;

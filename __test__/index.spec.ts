@@ -1,8 +1,19 @@
+import { join } from 'path'
+import { fileURLToPath } from 'url'
+
 import test from 'ava'
 
-import { plus100 } from '../index'
+import { col, SessionContext } from '../index'
 
-test('sync function from native code', (t) => {
-  const fixture = 42
-  t.is(plus100(fixture), fixture + 100)
+// https://github.com/apache/arrow-datafusion/blob/main/datafusion/core/tests/data/customer.csv
+const fixture = join(fileURLToPath(import.meta.url), '..', 'example.csv')
+
+test('basic data operator', async (t) => {
+  const ctx = new SessionContext()
+  const df = await ctx.readCsv(fixture)
+  await df
+    .filter(col('a').ltEq(col('b')))
+    .limit(0, 100)
+    .show()
+  t.pass()
 })
