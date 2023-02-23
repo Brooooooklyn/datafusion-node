@@ -1,4 +1,4 @@
-# `@napi-rs/package-template`
+# `@napi-rs/datafusion`
 
 ![https://github.com/Brooooooklyn/datafusion-node/actions](https://github.com/Brooooooklyn/datafusion-node/workflows/CI/badge.svg)
 
