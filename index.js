@@ -228,9 +228,72 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { DataFrame, Expr, col, SessionContext } = nativeBinding
+const {
+  DataFrame,
+  JoinType,
+  Expr,
+  col,
+  binaryExpr,
+  and,
+  or,
+  min,
+  max,
+  sum,
+  avg,
+  count,
+  countDistinct,
+  inList,
+  concat,
+  concatWs,
+  random,
+  approxDistinct,
+  approxMedian,
+  approxPercentileCont,
+  approxPercentileContWithWeight,
+  groupingSet,
+  cube,
+  rollup,
+  isNull,
+  isTrue,
+  isNotTrue,
+  isFalse,
+  isNotFalse,
+  isUnknown,
+  isNotUnknown,
+  Operator,
+  SessionContext,
+} = nativeBinding
 
 module.exports.DataFrame = DataFrame
+module.exports.JoinType = JoinType
 module.exports.Expr = Expr
 module.exports.col = col
+module.exports.binaryExpr = binaryExpr
+module.exports.and = and
+module.exports.or = or
+module.exports.min = min
+module.exports.max = max
+module.exports.sum = sum
+module.exports.avg = avg
+module.exports.count = count
+module.exports.countDistinct = countDistinct
+module.exports.inList = inList
+module.exports.concat = concat
+module.exports.concatWs = concatWs
+module.exports.random = random
+module.exports.approxDistinct = approxDistinct
+module.exports.approxMedian = approxMedian
+module.exports.approxPercentileCont = approxPercentileCont
+module.exports.approxPercentileContWithWeight = approxPercentileContWithWeight
+module.exports.groupingSet = groupingSet
+module.exports.cube = cube
+module.exports.rollup = rollup
+module.exports.isNull = isNull
+module.exports.isTrue = isTrue
+module.exports.isNotTrue = isNotTrue
+module.exports.isFalse = isFalse
+module.exports.isNotFalse = isNotFalse
+module.exports.isUnknown = isUnknown
+module.exports.isNotUnknown = isNotUnknown
+module.exports.Operator = Operator
 module.exports.SessionContext = SessionContext

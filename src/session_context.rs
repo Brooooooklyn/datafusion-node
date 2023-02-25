@@ -17,7 +17,28 @@ impl SessionContext {
     }
   }
 
+  #[napi(factory)]
+  /// Create `SessionContext` from an execution config with config options read from the environment
+  pub fn with_config_env() -> Result<Self, napi::Error> {
+    Ok(Self {
+      inner: datafusion::prelude::SessionContext::with_config(
+        datafusion::prelude::SessionConfig::from_env().map_err(anyhow::Error::from)?,
+      ),
+    })
+  }
+
   #[napi]
+  /// Creates a [`DataFrame`] that will execute a SQL query.
+  ///
+  /// Note: This api implements DDL such as `CREATE TABLE` and `CREATE VIEW` with in memory
+  /// default implementations.
+  pub async fn sql(&self, sql: String) -> Result<DataFrame, napi::Error> {
+    let df = self.inner.sql(&sql).await.map_err(anyhow::Error::from)?;
+    Ok(DataFrame { inner: Some(df) })
+  }
+
+  #[napi]
+  /// Creates a [`DataFrame`] for reading a CSV data source.
   pub async fn read_csv(&self, path: String) -> Result<DataFrame, napi::Error> {
     let df = self
       .inner
