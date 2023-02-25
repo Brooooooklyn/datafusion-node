@@ -1,6 +1,6 @@
 {
   "name": "@napi-rs/datafusion",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Apache DataFusion Node.js binding",
   "main": "index.js",
   "repository": "https://github.com/Brooooooklyn/datafusion-node.git",
