@@ -25,7 +25,7 @@ jobs:
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: nightly-2023-02-21
+          toolchain: nightly-2026-08-08
           components: clippy, rustfmt
 
       - name: Install dependencies
